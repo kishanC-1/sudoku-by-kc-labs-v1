@@ -1,7 +1,8 @@
 import Link from "next/link";
+import type { Route } from "next";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
 
-const links = [
+const links: { href: Route; label: string }[] = [
   { href: "/play", label: "Play" },
   { href: "/daily", label: "Daily" },
   { href: "/academy", label: "Academy" },
@@ -13,15 +14,23 @@ export function Navbar() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <Link href="/" className="group">
           <div className="text-xl font-bold tracking-tight">Sudoku</div>
-          <div className="text-xs text-slate-500 transition group-hover:text-brand-600 dark:text-slate-400">by KC Labs</div>
+          <div className="text-xs text-slate-500 transition group-hover:text-brand-600 dark:text-slate-400">
+            by KC Labs
+          </div>
         </Link>
+
         <nav className="hidden items-center gap-6 md:flex">
           {links.map((link) => (
-            <Link key={link.href} href={link.href} className="text-sm font-medium text-slate-600 transition hover:text-slate-900 dark:text-slate-300 dark:hover:text-white">
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-sm font-medium text-slate-600 transition hover:text-slate-900 dark:text-slate-300 dark:hover:text-white"
+            >
               {link.label}
             </Link>
           ))}
         </nav>
+
         <ThemeToggle />
       </div>
     </header>
